@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "simple-react-app"
+  },
+  "targets": {
+    "your-firebase-project-id": {
+      "hosting": {
+        "prod": [
+          "simple-react-app"
+        ]
+      }
+    }
   }
 }
