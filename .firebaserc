@@ -5,8 +5,8 @@
   "targets": {
     "simple-app-dev-e5a08": {
       "hosting": {
-        "prod": [
-          "simple-react-app"
+        "default": [
+          "simple-app-dev-e5a08"
         ]
       }
     }
