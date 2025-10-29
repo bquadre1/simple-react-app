@@ -20,7 +20,7 @@
     }
   ],
   "hosting": {
-    "site": "simple-app-dev",
+    "site": "simple-app-dev-e5a08",
     "public": "build",
     "ignore": [
       "firebase.json",
