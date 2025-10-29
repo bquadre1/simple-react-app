@@ -1,9 +1,9 @@
 {
   "projects": {
-    "default": "simple-react-app"
+    "default": "simple-app-dev"
   },
   "targets": {
-    "your-firebase-project-id": {
+    "simple-app-dev": {
       "hosting": {
         "prod": [
           "simple-react-app"
