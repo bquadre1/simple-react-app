@@ -36,9 +36,11 @@ jobs:
           SIMPLE_APP_FIREBASE_DATABASE_URL: ${{ vars.SIMPLE_APP_FIREBASE_DATABASE_URL }}
           SIMPLE_APP_FIREBASE_FUNCTIONS_REGION: ${{ vars.SIMPLE_APP_FIREBASE_FUNCTIONS_REGION }}
         run: CI=false npm run build
-#      - name: Authenticate to Firebase
+#      - name: Authenticate to Firebase 1//053e_LU5QpzmDCgYIARAAGAUSNwF-L9Ir6VXQvtkKQwIuMc3EuOJtvEvdPcW3SwU-pgmzuNy7_Q4DVZlR6pN0Msb3oGCFLXXnrwg
     
       - name: Deploy to Firebase
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: firebase deploy --only hosting --token "1//053e_LU5QpzmDCgYIARAAGAUSNwF-L9Ir6VXQvtkKQwIuMc3EuOJtvEvdPcW3SwU-pgmzuNy7_Q4DVZlR6pN0Msb3oGCFLXXnrwg" --project "simple-app-dev-e5a08"
+          SIMPLE_APP_FIREBASE_PROJECT_ID: ${{ vars.SIMPLE_APP_FIREBASE_PROJECT_ID }}
+        run: firebase deploy --only hosting --token "${FIREBASE_TOKEN}" --project "${SIMPLE_APP_FIREBASE_PROJECT_ID}"
+
