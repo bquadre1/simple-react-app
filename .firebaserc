@@ -1,9 +1,9 @@
 {
   "projects": {
-    "default": "simple-app-dev"
+    "default": "simple-app-dev-e5a08"
   },
   "targets": {
-    "simple-app-dev": {
+    "simple-app-dev-e5a08": {
       "hosting": {
         "prod": [
           "simple-react-app"
