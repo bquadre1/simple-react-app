@@ -1,0 +1,53 @@
+name: Deploy to Firebase Hosting and Functions
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+          cache: "node"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Build the project
+        env:
+          SOLUTION_APP_FIREBASE_PROJECT_ID: ${{ vars.SOLUTION_APP_FIREBASE_PROJECT_ID }}
+          SOLUTION_APP_FIREBASE_API_KEY: ${{ vars.SOLUTION_APP_FIREBASE_API_KEY }}
+          SOLUTION_APP_FIREBASE_AUTH_DOMAIN: ${{ vars.SOLUTION_APP_FIREBASE_AUTH_DOMAIN }}
+          SOLUTION_APP_FIREBASE_STORAGE_BUCKET: ${{ vars.SOLUTION_APP_FIREBASE_STORAGE_BUCKET }}
+          SOLUTION_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ vars.SOLUTION_APP_FIREBASE_MESSAGING_SENDER_ID }}
+          SOLUTION_APP_FIREBASE_APP_ID: ${{ vars.SOLUTION_APP_FIREBASE_APP_ID}}
+          SOLUTION_APP_FIREBASE_MEASUREMENT_ID: ${{ vars.SOLUTION_APP_FIREBASE_MEASUREMENT_ID }}
+          SOLUTION_APP_FIREBASE_DATABASE_URL: ${{ vars.SOLUTION_APP_FIREBASE_DATABASE_URL }}
+          SOLUTION_APP_FIREBASE_FUNCTIONS_REGION: ${{ vars.SOLUTION_APP_FIREBASE_FUNCTIONS_REGION }}
+        run: CI=false npm run build
+
+      - name: Authenticate to Firebase
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase login:ci --token $FIREBASE_TOKEN
+
+      - name: Deploy to Firebase Functions
+        env:
+          SOLUTION_APP_FIREBASE_PROJECT_ID: ${{ vars.SOLUTION_APP_FIREBASE_PROJECT_ID }}
+        run: firebase deploy --only functions:deploy --token $FIREBASE_TOKEN --project $SOLUTION_APP_FIREBASE_PROJECT_ID --region ${{ vars.SOLUTION_APP_FIREBASE_FUNCTIONS_REGION }} --source ./functions/build
+
+      - name: Deploy to Firebase Hosting
+        env:
+          SOLUTION_APP_FIREBASE_PROJECT_ID: ${{vars.SOLUTION_APP_FIREBASE_PROJECT_ID }}
+        run: firebase deploy --only hosting
