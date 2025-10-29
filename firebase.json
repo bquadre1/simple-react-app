@@ -20,7 +20,8 @@
     }
   ],
   "hosting": {
-    "public": "public",
+    "site": "simple-react-app",
+    "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -29,7 +30,7 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "app"
+        "destination": "/index.html"
       }
     ]
   }
