@@ -37,8 +37,10 @@ jobs:
           SIMPLE_APP_FIREBASE_FUNCTIONS_REGION: ${{ vars.SIMPLE_APP_FIREBASE_FUNCTIONS_REGION }}
         run: CI=false npm run build
 
-      #- name: Authenticate to Firebase
-       # env:
+      - name: Authenticate to Firebase
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase login:ci --token $FIREBASE_TOKEN
        #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       #  run: firebase login:ci --token $FIREBASE_TOKEN
 
