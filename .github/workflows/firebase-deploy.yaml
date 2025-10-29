@@ -37,17 +37,19 @@ jobs:
           SIMPLE_APP_FIREBASE_FUNCTIONS_REGION: ${{ vars.SIMPLE_APP_FIREBASE_FUNCTIONS_REGION }}
         run: CI=false npm run build
 
-      - name: Authenticate to Firebase
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: firebase login:ci --token $FIREBASE_TOKEN
+      #- name: Authenticate to Firebase
+       # env:
+       #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      #  run: firebase login:ci --token $FIREBASE_TOKEN
 
-      - name: Deploy to Firebase Functions
-        env:
-          SIMPLE_APP_FIREBASE_PROJECT_ID: ${{ vars.SIMPLE_APP_FIREBASE_PROJECT_ID }}
-        run: firebase deploy --only functions:deploy --token $FIREBASE_TOKEN --project $SIMPLE_APP_FIREBASE_PROJECT_ID --region ${{ vars.SIMPLE_APP_FIREBASE_FUNCTIONS_REGION }} --source ./functions/build
+     # - name: Deploy to Firebase Functions
+       # env:
+       #   SIMPLE_APP_FIREBASE_PROJECT_ID: ${{ vars.SIMPLE_APP_FIREBASE_PROJECT_ID }}
+        #  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        #run: firebase deploy --only functions:deploy --token $FIREBASE_TOKEN --project #$SIMPLE_APP_FIREBASE_PROJECT_ID --region ${{ vars.SIMPLE_APP_FIREBASE_FUNCTIONS_REGION }} #--source ./functions/build
 
       - name: Deploy to Firebase Hosting
         env:
           SIMPLE_APP_FIREBASE_PROJECT_ID: ${{vars.SIMPLE_APP_FIREBASE_PROJECT_ID }}
-        run: firebase deploy --only hosting
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase deploy --only hosting --token $FIREBASE_TOKEN --project $SIMPLE_APP_FIREBASE_PROJECT_ID 
