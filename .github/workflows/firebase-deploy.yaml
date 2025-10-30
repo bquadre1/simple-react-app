@@ -41,4 +41,4 @@ jobs:
               env:
                   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
                   SIMPLE_APP_FIREBASE_PROJECT_ID: ${{ vars.SIMPLE_APP_FIREBASE_PROJECT_ID }}
-              run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }} --project ${{ vars.SIMPLE_APP_FIREBASE_PROJECT_ID }}
+              run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}" --project "${{ vars.SIMPLE_APP_FIREBASE_PROJECT_ID }}"
