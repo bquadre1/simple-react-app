@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./Dockerfile.dev
+          file: ./Dockerfile
           push: true
           tags: softmaxcloud/simple-app:frontend-dev-${{ steps.vars.outputs.commit }}
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -48,7 +48,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./Dockerfile.staging
+          file: ./Dockerfile
           push: true
           tags: softmaxcloud/simple-app:frontend-staging-${{ steps.vars.outputs.commit }}
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -60,7 +60,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: ./Dockerfile.prod
+          file: ./Dockerfile
           push: true
           tags: softmaxcloud/simple-app:frontend-prod-${{ steps.vars.outputs.commit }}
           cache-from: type=local,src=/tmp/.buildx-cache
