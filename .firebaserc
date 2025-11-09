@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "simple-app-fc3e7"
+  },
+  "targets": {
+    "simple-app-fc3e7": {
+      "hosting": {
+        "dev": [
+          "simple-app-fc3e7-80356"
+        ],
+        "prod": [
+          "simple-app-fc3e7-867d4"
+        ]
+      }
+    }
+  }
+}
