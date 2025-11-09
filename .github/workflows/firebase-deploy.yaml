@@ -2,8 +2,8 @@ name: CI/CD React Firebase
 
 on:
   push:
-    branches: [dev, main]
-    
+    branches: [dev, staging, main]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -28,8 +28,12 @@ jobs:
 
       - name: Deploy to Development Firebase
         if: github.ref == 'refs/heads/dev'
-        run: firebase deploy --only hosting --token "${{ vars.FIREBASE_TOKEN }}"
+        run: firebase deploy --only hosting:dev --token "${{ vars.FIREBASE_TOKEN }}"
+
+      - name: Deploy to Staging Firebase
+        if: github.ref == 'refs/heads/main'
+        run: firebase deploy --only hosting:staging --token "${{ vars.FIREBASE_TOKEN }}"
 
       - name: Deploy to Production Firebase
         if: github.ref == 'refs/heads/main'
-        run: firebase deploy --only hosting --token "${{ vars.FIREBASE_TOKEN }}"
+        run: firebase deploy --only hosting:prod --token "${{ vars.FIREBASE_TOKEN }}"

@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React Very Fast 2025 Development!
+          Learn React Very Fast 2025 Dev only!
         </a>
       </header>
     </div>
