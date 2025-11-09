@@ -8,8 +8,11 @@
         "dev": [
           "simple-app-fc3e7-80356"
         ],
-        "prod": [
+        "staging": [
           "simple-app-fc3e7-867d4"
+        ],
+        "prod": [
+          "simple-app-fc3e7"
         ]
       }
     }
