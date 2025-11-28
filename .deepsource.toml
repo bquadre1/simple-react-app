@@ -13,7 +13,7 @@ runtime_version = "18"   # Node.js version
 
 [[analyzers]]
 name = "typescript"
-enabled = true
+enabled = false
 runtime_version = "18"
 
 [[analyzers]]
