@@ -1,1 +1,76 @@
+version = 1
 
+# -------------------------
+# 1. Analyzers
+# -------------------------
+# Enable one or more analyzers depending on your project.
+# Comment out analyzers you don't need.
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+runtime_version = "18"   # Node.js version
+
+[[analyzers]]
+name = "typescript"
+enabled = true
+runtime_version = "18"
+
+[[analyzers]]
+name = "python"
+enabled = false
+runtime_version = "3.10"
+
+[[analyzers]]
+name = "go"
+enabled = false
+
+[[analyzers]]
+name = "docker"
+enabled = false
+
+[[analyzers]]
+name = "secrets"
+enabled = true
+
+# -------------------------
+# 2. Directories
+# -------------------------
+# Paths to analyze or skip.
+
+exclude_patterns = [
+  "node_modules/",
+  "dist/",
+  "build/",
+  ".venv/",
+  "coverage/",
+  "public/",
+]
+
+# -------------------------
+# 3. Test Coverage (optional)
+# -------------------------
+# Enable only if you will upload coverage with:
+# deepsourcelabs/test-coverage-action
+
+[test_coverage]
+enabled = false
+format = "lcov"          # lcov, cobertura, text-summary
+path = "coverage/lcov.info"
+
+# -------------------------
+# 4. Transformers (formatters)
+# -------------------------
+# Enable auto-formatting on PRs.
+
+[[transformers]]
+name = "prettier"
+enabled = true
+
+[[transformers]]
+name = "black"          # Python formatter
+enabled = false
+
+[[transformers]]
+name = "gofmt"
+enabled = false
